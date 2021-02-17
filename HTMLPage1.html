@@ -1,0 +1,81 @@
+<!Doctype html>
+<html>
+<head>
+<Script>
+function SurjyaS(){
+//	ver x;
+	var x = document.getElementById('ename').value;
+	alert ("x");
+	if (x.length >10) {
+		alert ('please enter max 10 char');
+		}
+	else {
+		var x1 = document.getElementById('ename').value + " " + document.getElementById('empid').value + " " + document.getElementById('login').value;
+		document.getElementById('demo').innerHTML = x1;
+		/*
+		db = window.opendatabase('employee','1.0','my first database', 200000);
+		db.transaction(function (tx) {
+		tx.executeSql('CREATE TABLE IF NOT EXISTS foo (id unique, text)');
+		tx.executeSql('INSERT INTO foo (id, text) VALUES (1, "synergies")');
+		}); */
+		localStorage.setItem("MyName", document.getElementById('ename').value);
+		localStorage.setItem("MyID", document.getElementById('empid').value);
+		localStorage.setItem("MyLogIn", document.getElementById('Login').value);
+		//document.getElementById('empid').value, document.getElementById('login').value)
+	}
+}
+</script>
+</head>
+
+<body>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+<div data-role ="header">	
+	<h2> <p style="color:green"> My First Java Script Application </p> </h2>
+	<div data-role ="controlgroup" data-type="horizontal" class="ui-mini ul-btn-left">
+	<a href="#" class= "ui-btn ui-btn-icon-right ui-icon-plus">Add</a>
+	<a href="#" class= "ui-btn ui-btn-icon-right ui-icon-arrow-u">Up</a>
+	<a href="#" class= "ui-btn ui-btn-icon-right ui-icon-arrow-d">Down</a>
+	</div>	
+</div>
+
+
+
+<p id="demo"></p>
+Employee Name
+<input type = "text" id ="ename" name= "ename"> 
+Employee ID
+<input type = "text" id ="empid" name= "empid"> 
+Employee Login
+<input type = "text" id ="login" name= "login"> 
+<button Type = "button" onclick = "SurjyaS()"> Click here </button> 
+<button onclick = "getMyDataSurjya()"> Search here </button>
+
+<script>
+function getMyDataSurjya() {
+	
+	alert("Rihan");
+	
+	var MyID = localStorage.getItem("MyID");
+	alert(localStorage.getItem("MyID"));
+	document.getElementById("empid").value = localStorage.getItem("MyID");
+}
+</Script>
+<button onclick = "CreateTableWebSql()"> Create Employee List TABLE </button>
+<Script>
+function CreateTableWebSql() {
+var db;
+	db = window.openDatabase('employees','1.0','my first database', 200000);
+	db.transaction(function (tx) {
+	//tx.executeSql('CREATE TABLE IF NOT EXISTS employeesList (id INTEGER PRIMARY KEY AUTOINCREMENT, MyName TEXT NULL, MyID TEXT NULL, MyLogIn TEXT NULL)');
+	tx.executeSql('INSERT INTO employeesList (MyName, MyID, MyLogIn) VALUES ("synergies", "1553774", "M90840")');
+	});
+}
+
+</Script>
+
+</body>
+</html>
